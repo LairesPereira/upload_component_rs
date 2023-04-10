@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body className='h-full bg-[#FBFAFF]'>
-        <NextScript />
+      <NextScript />
       </body>
     </Html>
   )
