@@ -1,4 +1,6 @@
 import Image from "next/image"
+import fileIcon from '../../public/pdf-icon.png'
+import uploadIcon from '../../public/uploadIcon.png'
 import FileUploadInfo from "../../components/fileUploadInfo"
 import { Inter } from 'next/font/google'
 import { ChangeEvent, useState } from "react"
@@ -7,86 +9,88 @@ import { DragEvent } from "react"
 
 const inter = Inter({ subsets: ['latin'] })
 
-const DragAndDropArea = function()  {
-  const  [dragArea, setDrag] = useState({
-    isDragActive: false,
-    filesDroped: []
-  })
-
-  const handleDrop = function(e: DragEvent<HTMLDivElement> ) {
-    e.preventDefault()
-    e.stopPropagation()
-    let filesToPush = []
-  
-    if(e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const filesRecieved = e.dataTransfer.files
-      for (const file in filesRecieved) {
-        if(typeof(filesRecieved[file]) === 'object') {
-          setDrag({...dragArea, ...dragArea.filesDroped.push(filesRecieved[file])})
-        }
-      }
-    }
-    setDrag({...dragArea, isDragActive: false})
-  }
-
-  const inputHandleChange = function(e: ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.files)
-  }
-
-  const handleDrag = function(e: DragEvent<HTMLFormElement | HTMLDivElement>) {
-    e.preventDefault()
-    e.stopPropagation()
-    
-    if(e.type === 'dragenter' || e.type === 'dragover') {
-      setDrag({...dragArea, isDragActive: true})
-    } else if(e.type === 'dragleave') {
-      setDrag({...dragArea, isDragActive: false})
-    } 
-  }
-
-  return (
-    <>
-    <div className={`${dragArea.isDragActive ? 'active border-[#5AB9FF]' : 'false'} 
-    border-2 border-dashed relative rounded-lg `}
-    onDragEnter={handleDrag} 
-    onDragLeave={handleDrag}>
-    <label>
-      <div className='grid place-items-center justify-items-center px-5 py-10 space-y-2 rounded-lg bg-[#FBFAFF]'>
-        <Image src="/upload.png" alt="upload file" width={60} height={60} />
-          <input className={styles.inputElement} type="file" multiple={true} onChange={inputHandleChange}/>
-            Import or drag your files here
-          </div>
-            {/* 
-                the draggable area have other elements that are not part of the
-                draggable area itself, so it calls dragLeave method. To solve this
-                issue, we create a div that will cover all the elements on that area
-                and keep dragOver activated and its gonna be hidden when we leave.
-            */}
-            { dragArea.isDragActive && 
-              <div className="absolute w-full h-full inset-0 rounded-2xl" 
-              onDragEnter={handleDrag} 
-              onDragLeave={handleDrag} 
-              onDragOver={handleDrag}
-              onDrop={handleDrop}>
-              </div>
-            }
-        </label>
-    </div>
-    <div className="space-y-1 max-h-96 overflow-auto">
-      <FileUploadInfo infoSend={dragArea.filesDroped} />
-    </div>
-    </>
-  )
-}
 
 export default function Home() {
   return (
-    <div className={`${inter.className} grid h-screen place-items-center bg-gradient-to-r from-[#A8CAFF] to-[#DAE8FF]`}>
-        <div className="space-y-1 shadow-2xl max-w-md">
-          <div>
-            <DragAndDropArea />
-          </div >
+    <div className="homeAreaBox flex flex-col place-items-center place-content-center h-screen bg-gradient-to-r from-[#3D4E81] via-[#5753C9] via-30% to-[#6E7FF3]">
+      <div className="setSizeOfChildren w-96 space-y-2">
+        <div className="dragAreaBox flex flex-col space-y-4 place-items-center py-12 rounded-xl border-4 border-dashed bg-gradient-to-r from-[#a1c4fd] to-[#c2e9fb]">
+        <Image src={uploadIcon} width={50} height={50} alt='upload icon' />
+          <span>drag and drop your files here</span>
+        </div>
+        <div className="allFilesIpuntParent space-y-1.5 rounded-lg max-h-96 overflow-y-auto">
+          <div className="filesInputedBox py-5 rounded-xl bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]" >
+            <div className="flex flex-col-3 place-items-center">
+              <div className="basis-3/12">
+                <Image className="justify-self-start ml-5 " src={fileIcon}  width={40} height={40} alt={'file icon'} />
+              </div>
+              <div className="basis-3/6 grid grid-cols-2 justify-items-center"> 
+                <span className="line-clamp-1">file with big big big big big big big big big big big big really big name</span>
+                <span >size</span>
+              </div>
+              <div>
+                <span className="basis-1/6">loadicon</span>
+              </div>
+            </div>  
+          </div>
+          <div className="filesInputedBox py-5 rounded-xl bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]" >
+            <div className="flex flex-col-3 place-items-center">
+              <div className="basis-3/12">
+                <Image className="justify-self-start ml-5 " src={fileIcon}  width={40} height={40} alt={'file icon'} />
+              </div>
+              <div className="basis-3/6 grid grid-cols-2 justify-items-center"> 
+                <span className="line-clamp-1">file with big big big big big big big big big big big big really big name</span>
+                <span >size</span>
+              </div>
+              <div>
+                <span className="basis-1/6">loadicon</span>
+              </div>
+            </div>  
+          </div>
+          <div className="filesInputedBox py-5 rounded-xl bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]" >
+            <div className="flex flex-col-3 place-items-center">
+              <div className="basis-3/12">
+                <Image className="justify-self-start ml-5 " src={fileIcon}  width={40} height={40} alt={'file icon'} />
+              </div>
+              <div className="basis-3/6 grid grid-cols-2 justify-items-center"> 
+                <span className="line-clamp-1">file with big big big big big big big big big big big big really big name</span>
+                <span >size</span>
+              </div>
+              <div>
+                <span className="basis-1/6">loadicon</span>
+              </div>
+            </div>  
+          </div>
+          <div className="filesInputedBox py-5 rounded-xl bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]" >
+            <div className="flex flex-col-3 place-items-center">
+              <div className="basis-3/12">
+                <Image className="justify-self-start ml-5 " src={fileIcon}  width={40} height={40} alt={'file icon'} />
+              </div>
+              <div className="basis-3/6 grid grid-cols-2 justify-items-center"> 
+                <span className="line-clamp-1">file with big big big big big big big big big big big big really big name</span>
+                <span >size</span>
+              </div>
+              <div>
+                <span className="basis-1/6">loadicon</span>
+              </div>
+            </div>  
+          </div>
+          <div className="filesInputedBox py-5 rounded-xl bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]" >
+            <div className="flex flex-col-3 place-items-center">
+              <div className="basis-3/12">
+                <Image className="justify-self-start ml-5 " src={fileIcon}  width={40} height={40} alt={'file icon'} />
+              </div>
+              <div className="basis-3/6 grid grid-cols-2 justify-items-center"> 
+                <span className="line-clamp-1">file with big big big big big big big big big big big big really big name</span>
+                <span >size</span>
+              </div>
+              <div>
+                <span className="basis-1/6">loadicon</span>
+              </div>
+            </div>  
+          </div>
+        </div>
       </div>
-    </div>  
+    </div>
   )
 }
