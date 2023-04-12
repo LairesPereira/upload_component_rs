@@ -21,7 +21,8 @@ export default function DragAndDropArea(fileUploadMethods: any) {
     return (
         <>
             <label>
-                <div className={`${isDragActive ? 'border-[#2d2d2d]' : '' } flex flex-col place-items-center space-y-4
+                <div className={`${isDragActive ? 'border-[#2d2d2d]' : '' } 
+                flex flex-col place-items-center space-y-4
                 dragAreaBox py-12 rounded-xl border-4 border-dashed bg-gradient-to-r from-[#cfd9df] to-[#e2ebf0]
                 `}
                     onDragEnter={handleDrag}
