@@ -33,7 +33,6 @@ export default function DragAndDropArea(fileUploadMethods: any) {
                     <input type='file' onChange={handleDrop} style={ {display: 'none'} } /> 
                     <Image src={uploadIcon} width={50} height={50} alt='upload icon' />
                     <span>drag and drop your files here</span>
-                
                 </div>
             </label>
         </>

@@ -3,12 +3,6 @@ import { Inter } from 'next/font/google'
 import DragAndDropArea from "../../components/DragAndDropArea"
 import FileUploadInfo from "../../components/fileUploadInfo"
 
-import Image from "next/image"
-import uploadIcon from '../../public/uploadIcon.png'
-import fileIcon from '../../public/pdf-icon.png'
-import { BeatLoader } from "react-spinners"
-import { useState } from "react"
-
 const inter = Inter({ subsets: ['latin'] })
 
 
