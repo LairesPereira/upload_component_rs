@@ -4,12 +4,6 @@ import DragAndDropArea from "../../components/DragAndDropArea"
 import FileUploadInfo from "../../components/fileUploadInfo"
 import { useState } from 'react'
 
-
-import Image from 'next/image'
-import uploadIcon from '../../public/uploadIcon.png'
-const inter = Inter({ subsets: ['latin'] })
-
-
 export default function Home() {
 
   const [ filesToUpload, setFiles ] = useState({
@@ -17,17 +11,12 @@ export default function Home() {
   })
 
   function setFilesToUpload(e :any) {
-    console.log('e: ', e)
-    const objectFilesToArray = Object.values(e)
     for (const file in e) {
-      console.log(e)
-      if(typeof(e[file]) === 'object') {
-        setFiles({...filesToUpload, ...filesToUpload.filesToShow.push(e[file])})
-      }
-        
+        if(typeof(e[file]) === 'object') {
+          setFiles({...filesToUpload, ...filesToUpload.filesToShow.push(e[file])})
+        }
       }
     }
-    console.log('finalmente', filesToUpload)
 
   return (
     <div className="homeAreaBox flex flex-col place-items-center place-content-center h-screen bg-gradient-to-r from-[#3D4E81] via-[#5753C9] via-30% to-[#6E7FF3]">

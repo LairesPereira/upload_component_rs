@@ -18,6 +18,12 @@ export default function DragAndDropArea(fileUploadMethods: any) {
         fileUploadMethods.setFiles(e.dataTransfer.files) 
     }
 
+    function handleInputChange(e: any) {
+        e.preventDefault()
+        e.stopPropagation()
+        fileUploadMethods.setFiles(e.target.files)
+    }
+
     return (
         <>
             <label>
@@ -30,7 +36,7 @@ export default function DragAndDropArea(fileUploadMethods: any) {
                     onDragLeave={handleDrag}
                     onDrop={handleDrop}
                 >
-                    <input type='file' onChange={handleDrop} style={ {display: 'none'} } /> 
+                    <input type='file' onChange={handleInputChange} multiple={true} style={ {display: 'none'} } /> 
                     <Image src={uploadIcon} width={50} height={50} alt='upload icon' />
                     <span>drag and drop your files here</span>
                 </div>
