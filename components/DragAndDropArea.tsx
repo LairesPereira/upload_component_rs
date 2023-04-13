@@ -2,7 +2,7 @@ import Image from "next/image"
 import uploadIcon from '../public/uploadIcon.png'
 import { useState } from "react"
 
-export default function DragAndDropArea(fileUploadMethods: any) {
+export default function DragAndDropArea(fileUploadMethods: any) {  
     const [ isDragActive, setDrag ] = useState(false)
 
     function handleDrag(e :any) {
